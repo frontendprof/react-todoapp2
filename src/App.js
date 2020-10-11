@@ -13,6 +13,10 @@ function App() {
 
 
   useEffect(()=>{
+    getLocalTodos()
+  },[])
+
+  useEffect(()=>{
     
     const filterHandler=()=>{
 
@@ -32,9 +36,37 @@ function App() {
       }
     }
     filterHandler();
+    saveLocalTodos();
 
   }, [todos,status])
 
+
+  // Persist in local storage
+
+  const saveLocalTodos=()=>{
+
+    if(localStorage.getItem("todos")===null){
+      localStorage.setItem("todos",JSON.stringify([]))
+    }
+    else{
+      localStorage.setItem("todos",JSON.stringify(todos))
+    }
+
+  }
+
+  // Retrieve data from storage
+  const getLocalTodos=()=>{
+
+    if(localStorage.getItem("todos")===null){
+      localStorage.setItem("todos",JSON.stringify([]))
+    }
+    else{
+      let localTodos=JSON.parse(localStorage.getItem("todos"))
+      setTodos(localTodos)
+
+    }
+
+  }
 
  
   return (
