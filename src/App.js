@@ -36,12 +36,7 @@ function App() {
       }
     }
     filterHandler();
-    saveLocalTodos();
-
-  }, [todos,status])
-
-
-  // Persist in local storage
+      // Persist in local storage
 
   const saveLocalTodos=()=>{
 
@@ -53,6 +48,12 @@ function App() {
     }
 
   }
+    saveLocalTodos();
+
+  }, [todos,status])
+
+
+
 
   // Retrieve data from storage
   const getLocalTodos=()=>{
